@@ -20,8 +20,11 @@ public class demo {
 		System.setProperty("webdriver.chrome.driver","C:\\Users\\pcroot\\Desktop\\chromedriver_win32\\chromedriver.exe" );
 		
 //		edituser();
-		deleteUser();
-		
+//		deleteUser();
+// addDoctor();
+		//addPatient();
+		// login();
+		// viewpatients();
 		
 
 
@@ -30,7 +33,7 @@ public class demo {
 		
 	}
 	
-	void addDoctor() {
+	static void addDoctor() {
 		
 		WebDriver driver = new ChromeDriver();
 		{
@@ -90,7 +93,7 @@ public class demo {
 		
 		driver.close();
 	}
-	void addPatient() {
+	static void addPatient() {
 		
 		WebDriver driver = new ChromeDriver();
 		 
