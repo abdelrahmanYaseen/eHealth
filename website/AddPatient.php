@@ -57,7 +57,7 @@ li a:hover:not(.active) {
     
     
                 <div class="container">
-            <h1 class="form-heading col-xs-offset-1 " style="font-family: Times;font-size: 50px;">Patient Form</h1>
+            <h1 class="form-heading col-xs-offset-1 " style="font-family: Times;font-size: 40px;">Patient Form</h1>
                     <br>
                     <div class="row">
                         <div class="col-md-4 col-xs-offset-1 col-xs-9">
@@ -99,11 +99,10 @@ li a:hover:not(.active) {
                   </div>
               </div>                
                             
-                            
+             <div id="message"></div>                 
             <div class="form-actions">
                   <div class="row">
                       <div class="col-md-9">
-                          <br>
                          <button type="button" id="button1">Submit</button>
                       </div>
                   </div>
@@ -213,10 +212,60 @@ li a:hover:not(.active) {
                         
                         if(JSONResponse3["Result"]=="1")
                             {
-                               alert("Successful"); 
+                               window.location.href = "http://localhost/ehealth/PatientTable.php"; 
+                            }
+                        else if(JSONResponse3["Result"]=="3")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">please fill Name field</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="4")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">please fill Surname field</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="6")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">please fill Password field</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="7")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">please select your BirthDate</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="9")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">Your Password Must Contain At Least 8 Characters!</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="10")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">Your Password Must Contain At Least 1 Number!</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="11")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">Your Password Must Contain At Least 1 Capital Letter!</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="12")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">Your Password Must Contain At Least 1 Lowercase Letter!</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
                             }
                         else{
-                            alert("Failed");
+                            DivContent='<p style="font-family: Times;color:red;font-size: 14px;">Submission failed</p>'
+                            $('#message').empty();
+                            $('#message').append(DivContent);
                         }
                         
                        
@@ -245,10 +294,72 @@ li a:hover:not(.active) {
                         
                         if(JSONResponse3["Result"]=="1")
                             {
-                               alert("Successful"); 
+                              window.location.href = "http://localhost/ehealth/PatientTable.php";
+                            }
+                        else if(JSONResponse3["Result"]=="2")
+                        {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">Username already exists</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                        }
+                        else if(JSONResponse3["Result"]=="3")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">please fill Name field</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="4")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">please fill Surname field</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="5")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">please fill Username field</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="6")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">please fill Password field</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="7")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">please select your BirthDate</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="9")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">Your Password Must Contain At Least 8 Characters!</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="10")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">Your Password Must Contain At Least 1 Number!</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="11")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">Your Password Must Contain At Least 1 Capital Letter!</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
+                            }
+                        else if(JSONResponse3["Result"]=="12")
+                            {
+                               DivContent='<p style="font-family: Times;color:red;font-size: 14px;">Your Password Must Contain At Least 1 Lowercase Letter!</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);
                             }
                         else{
-                            alert("Failed");
+                            DivContent='<p style="font-family: Times;color:red;font-size: 14px;">Submission failed</p>'
+                            $('#message').empty();
+                            $('#message').append(DivContent);
                         }
                         
                          

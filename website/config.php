@@ -1,6 +1,6 @@
 <?php
 $DBSERVER = "localhost";
-$DBNAME = "ehealth";
+$DBNAME = "ehealth2";
 $DBUSER = "root";
-$DBPASSWORD = "";
+$DBPASSWORD = "1234";
 ?>

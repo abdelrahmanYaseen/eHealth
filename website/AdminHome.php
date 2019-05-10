@@ -11,6 +11,7 @@ session_start();
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
+      body#Home{ background-image:url("http://localhost/ehealth/computer-1149148_1920.jpg"); background-repeat:no-repeat; background-position:center; background-size:cover;background-attachment: fixed;} 
 header ul {
     list-style-type: none;
     margin: 0;
@@ -48,7 +49,7 @@ header .active {
       
 </style>
 </head>
-<body>
+<body id="Home">
 <?php
         if ((isset($_SESSION['Authorized']))&& ($_SESSION["UserType"] == "Admin"))
         {
@@ -58,7 +59,7 @@ header .active {
   <li><a class="active" href="http://localhost/ehealth/AdminHome.php">Home</a></li>
   <li><a href="http://localhost/ehealth/DoctorTable.php">Doctor Table</a></li>
   <li><a href="http://localhost/ehealth/PatientTable.php">Patient Table</a></li>
-        <li><a href="http://localhost/ehealth/logout.php" style="position: absolute;right: 0px;">logout</a></li>
+<li><a href="http://localhost/ehealth/logout.php" style="position: absolute;right: 0px;">logout</a></li>
 </ul>
     
     
@@ -67,8 +68,7 @@ header .active {
     <br>
     <br>
 
-<div class="main-div">
-   
+<div class="main-div" style="font-size: 18px;background-color: white;border-radius: 8px;width: 300px; padding: 25px 25px 25px 25px;opacity:0.9;">
    <h2 style="font-family: Times;">Tables Management</h2>
    <ul>
        <li><a  href="http://localhost/ehealth/AddDoctor.php">Add Doctor</a></li>

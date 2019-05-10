@@ -110,7 +110,11 @@ session_start();
             $_SESSION["Username"] = $UserCredentials["Username"];
             $_SESSION["Authorized"] = True;
             $_SESSION["UserType"] = $UserCredentials["UserType"];
-        
+        if(($_SESSION["UserType"] == "Doctor")||($_SESSION["UserType"] == "Patient"))
+        {
+            $_SESSION["login_details_id"] = $UserCredentials["login_details_id"];
+        }
+
             /*
                 CHANGE URL
             */

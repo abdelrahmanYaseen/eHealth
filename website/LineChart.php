@@ -10,6 +10,9 @@ session_start();
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    
+<script src='https://cdn.rawgit.com/admsev/jquery-play-sound/master/jquery.playSound.js'></script>
   <style>
 header ul {
     list-style-type: none;
@@ -63,6 +66,7 @@ header .active {
     <ul id="header">
   <li><a href="http://localhost/ehealth/PatientHome.php">Home</a></li>
   <li><a href="http://localhost/ehealth/SensorReadingTable.php">Sensor Reading</a></li>
+<li><a href="http://localhost/ehealth/contacts.php">Chat<span id="serverData" class="badge" style="background: red;"></span></a></li> 
    <li><a href="http://localhost/ehealth/logout.php" style="position: absolute;right: 0px;">logout</a></li>
 </ul>
     
@@ -146,6 +150,28 @@ JSONResponse = JSON.parse(data);
         
         window.onload = function () {
           
+        var xmlhttp5 = new XMLHttpRequest();
+                var url5 = "http://localhost/ehealth/TablesManagement.php";
+                xmlhttp5.onreadystatechange = function () {
+                    if (xmlhttp5.readyState == 4 && xmlhttp5.status == 200) {
+                        response5 = xmlhttp5.responseText;
+                
+                        JSONResponse5 = JSON.parse(response5);
+                        
+                        console.log(JSONResponse5);          
+                        
+                        if(parseInt(JSONResponse5["NumberOfMessages"])!=0)
+                        {
+                            document.getElementById("serverData").innerHTML = JSONResponse5["NumberOfMessages"];
+                        }
+                        
+                    }
+                };
+            
+                xmlhttp5.open("POST", url5, true);
+                xmlhttp5.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                var params = 'Operation=ListNumberOfMessages';
+                xmlhttp5.send(params);            
             
         var xmlhttp = new XMLHttpRequest();
                 var url = "http://localhost/ehealth/TablesManagement.php";
@@ -182,8 +208,62 @@ JSONResponse = JSON.parse(data);
                 var params = 'Operation=ListAllSensorReadings';
                 xmlhttp.send(params);
     };
-    
         
+    function notifyMe() {
+              if (!("Notification" in window)) {
+                alert("This browser does not support desktop notification");
+              }
+              else if (Notification.permission === "granted") {
+                    var vibrate = Notification.vibrate;
+                            var options = {
+                                    body: "you have new messages to read",
+                                    icon: "messageIcon.png",
+                                    dir : "ltr",
+                                    requireInteraction:true
+                                 };
+                              var notification = new Notification("New Messages",options);
+              }
+              else if (Notification.permission !== 'denied') {
+                Notification.requestPermission(function (permission) {
+                  if (!('permission' in Notification)) {
+                    Notification.permission = permission;
+                  }
+
+                  if (permission === "granted") {
+                    var options = {
+                          body: "you have new messages to read",
+                          icon: "messageIcon.png",
+                          dir : "ltr",
+                          requireInteraction:true
+                      };
+                    var notification = new Notification("New Messages",options);
+                  }
+                });
+              }
+}
+        
+   if(typeof(EventSource)!=="undefined") {
+	//create an object, passing it the name and location of the server side script
+    
+    var eSource = new EventSource("send_sse_patient.php");
+	//detect message receipt
+    eSource.onmessage = function(event) {
+		//write the received data to the page
+        console.log(event.data);
+        JSONResponse = JSON.parse(event.data);
+        console.log(parseInt(JSONResponse["flag"]));
+        
+        if(parseInt(JSONResponse["flag"])==1)
+            {
+               notifyMe();
+                $.playSound("definite.mp3")
+            }
+        
+		document.getElementById("serverData").innerHTML = JSONResponse["data"];
+        
+        
+	};
+}     
 </script>
     <?php
     } else {

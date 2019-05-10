@@ -11,7 +11,7 @@ mysqli_query($DBConnection, "SET NAMES utf8");
 $ResultJSON = '{"Operation" : "NoOP", "Result" : "-100" }';
 switch ($_REQUEST["Operation"]) {
     case "Login":
-
+    
         $ControlUserSQL = "Select * from user where Username='" . $_REQUEST["Username"] . "' and Password='" . $_REQUEST["Password"] . "'";
         $ControlUser = mysqli_query($DBConnection, $ControlUserSQL);
         
@@ -19,15 +19,23 @@ switch ($_REQUEST["Operation"]) {
             
                 $UserID = mysqli_fetch_array($ControlUser);
                 
-                $ResultJSON = '{"Operation" : "Login", "Result" : "1" , "UserID" : "' . $UserID["UserID"] .'" , "Username" : "' . $UserID["Username"] .'" , "UserType" : "' . $UserID["UserType"] .'" }';
-            
-            
+                $ResultJSON = '{"Operation" : "Login", "Result" : "1" , "UserID" : "' . $UserID["UserID"] .'" , "Username" : "' . $UserID["Username"] .'" , "UserType" : "' . $UserID["UserType"] .'" ';
+           
+            if(($UserID["UserType"] == "Doctor")||($UserID["UserType"] == "Patient"))
+            {
+                $Query = 'UPDATE chatnotification SET NumberOfMessages=0 WHERE UserID="'.$UserID["UserID"].'"';
+                $QueryResult = mysqli_query($DBConnection, $Query);
+                //$last_id = mysqli_insert_id($DBConnection);
+                //$ResultJSON =$ResultJSON.',"SessionID" : "' . $last_id .'" ';
+            }
+            $ResultJSON=$ResultJSON."}";
         } else {
             $ResultJSON = '{"Operation" : "Login", "Result" : "-1" }';
         }
 // Check result         	  		     
         break;
 }
+
 
 echo $ResultJSON;
 ?>

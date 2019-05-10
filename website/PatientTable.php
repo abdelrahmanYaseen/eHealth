@@ -73,7 +73,7 @@ li a:hover:not(.active) {
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <i class="icon-settings font-red"></i>
-                                                <span class="caption-subject font-red sbold uppercase"><center><h1 style="font-family: Times;font-size: 50px;"><br>Patient Table</h1></center></span>
+                                                <span class="caption-subject font-red sbold uppercase"><center><h1 style="font-family: Times;font-size: 40px;"><br>Patient Table</h1></center></span>
                                             </div>
                                             
                                         </div>
@@ -91,6 +91,9 @@ li a:hover:not(.active) {
                                                 </div>
                                             </div>
                                             <br>
+                                            
+                                            <div id="message"></div>
+                                            
                                             <div style="overflow-x:auto;">
                                             <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
                                                 <thead>
@@ -190,14 +193,13 @@ li a:hover:not(.active) {
                         console.log(response);
                         
                         
-                        if(JSONResponse2["Result"]=="1")
+                        if(JSONResponse2["Result"]!="1")
                             {
-                                alert("Successful Deletion");
+                                DivContent='<p style="font-family: Times;color:red;font-size: 18px;">Deletion failed</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent); 
                                
                             }
-                        else{
-                             alert("Deletion Failed");
-                        }
                         
                     }
                 };
