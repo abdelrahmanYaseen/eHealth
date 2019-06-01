@@ -95,7 +95,7 @@ li a:hover:not(.active) {
                                                         <th> Surname </th>   
                                                         <th> Age </th>
                                                         <th> View Sensor Reading </th>
-                                                        <th> View Standard Rates </th>
+                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody id="patientRow">
@@ -225,9 +225,7 @@ li a:hover:not(.active) {
                             DivContent = DivContent + '<td>';
                             DivContent = DivContent + '<a href="http://localhost/ehealth/DPSensorReadingTable.php?PatientID=' + JSONResponse["Result"][jidx]["PatientID"] +'">View Sensor Reading</a>';
                             DivContent = DivContent + '</td>';
-                            DivContent = DivContent + '<td>';
-                            DivContent = DivContent + '<a href="http://localhost/ehealth/StandardRates.php?PatientID=' + JSONResponse["Result"][jidx]["PatientID"] +'">View Standard Rates</a>';
-                            DivContent = DivContent + '</td>';
+                          
                             DivContent = DivContent + '</tr>';
                               
                              

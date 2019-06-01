@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Doctor Table</title>
+  <title>Emergency Case Table</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -49,10 +49,10 @@ li a:hover:not(.active) {
 ?>
 <header id="header">
    <ul id="header">
-  <li><a class="active" href="http://localhost/ehealth/DoctorHome.php">Home</a></li>
+  <li><a  href="http://localhost/ehealth/DoctorHome.php">Home</a></li>
   <li><a href="http://localhost/ehealth/DoctorPatientTable.php">Patients Table</a></li>
         <li><a href="http://localhost/ehealth/DoctorContacts.php">Chat<span id="serverData" class="badge" style="background: red;"></span></a></li>
-        <li><a href="http://localhost/ehealth/EmergencyCasesTable.php">Emergency Case<span id="EmergencyCase" class="badge" style="background: red;"></span></a></li>
+        <li><a class="active" href="http://localhost/ehealth/EmergencyCasesTable.php">Emergency Case<span id="EmergencyCase" class="badge" style="background: red;"></span></a></li>
     <li><a href="http://localhost/ehealth/logout.php" style="position: absolute;right: 0px;">logout</a></li>
 </ul>
     
@@ -75,22 +75,13 @@ li a:hover:not(.active) {
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <i class="icon-settings font-red"></i>
-                                                <span class="caption-subject font-red sbold uppercase"><center><h1 style="font-family: Times;font-size: 40px;"><br>Doctor Table</h1></center></span>
+                                                <span class="caption-subject font-red sbold uppercase"><center><h1 style="font-family: Times;font-size: 40px;"><br>Emergency Case Table</h1></center></span>
                                             </div>
                                             
                                         </div>
                                         <div class="portlet-body">
                                             <div class="table-toolbar">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="btn-group">
-                                                            <button id="sample_editable_1_new" onclick="window.location.href = 'http://localhost/ehealth/AddDoctor.php';" class="btn green" style="background-color:gray;color: white;"> Add New
-                                                                <i class="fa fa-plus"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
+                                                
                                             </div>
                                             <br>
                                             
@@ -103,7 +94,11 @@ li a:hover:not(.active) {
                                                         <th> PatientID</th>
                                                         <th> Name  </th>
                                                         <th> Surname </th>
+                                                        <th> Description </th>
+                                                        <th> Time of Occurrence </th>
+                                                        <th> Patient's Location </th>
                                                         <th> Confirm </th>
+                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody id="EmergencyCaseRow">
@@ -198,9 +193,23 @@ li a:hover:not(.active) {
                             DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["PatientID"] + '</td>';
                             DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["Name"] + '</td>';
                             DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["Surname"] + '</td>';
+                            DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["Description"] + '</td>';
+                            DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["TimeOfOccurrence"] + '</td>';
                             DivContent = DivContent + '<td>';
-                            DivContent = DivContent + '<button type="button" onclick="myFunction(\''+JSONResponse["Result"][jidx]["EmergencyCaseID"]+'\')" id="">Confirm</button>';
+                            DivContent = DivContent + '<a href="http://localhost/ehealth/Map.php?Latitude=' + JSONResponse["Result"][jidx]["Latitude"] + '&Longitude='+JSONResponse["Result"][jidx]["Longitude"] +'">Location</a>';
                             DivContent = DivContent + '</td>';
+                            
+                            if(parseInt(JSONResponse["Result"][jidx]["Flag"])==0)
+                            {
+                                DivContent = DivContent + '<td> Confirmed</td>';
+                            }
+                            else
+                            {
+                                DivContent = DivContent + '<td>';
+                                DivContent = DivContent + '<button type="button" onclick="myFunction(\''+JSONResponse["Result"][jidx]["EmergencyCaseID"]+'\')" id="">Confirm</button>';
+                                DivContent = DivContent + '</td>';
+                            }
+                            
                             DivContent = DivContent + '</tr>';
                               
                              
@@ -217,7 +226,7 @@ li a:hover:not(.active) {
                 var params = 'Operation=ListAllEmergencyCases';
                 xmlhttp.send(params);
     };
-        
+      
       function myFunction(RecordID) {
         
             
@@ -263,9 +272,23 @@ li a:hover:not(.active) {
                             DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["PatientID"] + '</td>';
                             DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["Name"] + '</td>';
                             DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["Surname"] + '</td>';
+                            DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["Description"] + '</td>';
+                            DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["TimeOfOccurrence"] + '</td>';
                             DivContent = DivContent + '<td>';
-                            DivContent = DivContent + '<button type="button" onclick="myFunction(\''+JSONResponse["Result"][jidx]["EmergencyCaseID"]+'\')" id="">Confirm</button>';
+                            DivContent = DivContent + '<a href="http://localhost/ehealth/Map.php?Latitude=' + JSONResponse["Result"][jidx]["Latitude"] + '&Longitude='+JSONResponse["Result"][jidx]["Longitude"] +'">Location</a>';
                             DivContent = DivContent + '</td>';
+                            
+                            if(parseInt(JSONResponse["Result"][jidx]["Flag"])==0)
+                            {
+                                DivContent = DivContent + '<td> Confirmed</td>';
+                            }
+                            else
+                            {
+                                DivContent = DivContent + '<td>';
+                                DivContent = DivContent + '<button type="button" onclick="myFunction(\''+JSONResponse["Result"][jidx]["EmergencyCaseID"]+'\')" id="">Confirm</button>';
+                                DivContent = DivContent + '</td>';
+                            }
+                            
                             DivContent = DivContent + '</tr>';
                               
                              
@@ -282,6 +305,28 @@ li a:hover:not(.active) {
                 var params = 'Operation=ListAllEmergencyCases';
                 xmlhttp.send(params);
         
+          
+                var xmlhttp6 = new XMLHttpRequest();
+                var url6 = "http://localhost/ehealth/TablesManagement.php";
+                xmlhttp6.onreadystatechange = function () {
+                    if (xmlhttp6.readyState == 4 && xmlhttp6.status == 200) {
+                        response6 = xmlhttp6.responseText;
+                        JSONResponse6 = JSON.parse(response6);
+                        
+                        console.log(JSONResponse6);          
+                        
+                        if(parseInt(JSONResponse6["NumberOfEmergencyCases"])!=0)
+                        {
+                            document.getElementById("EmergencyCase").innerHTML = JSONResponse6["NumberOfEmergencyCases"];
+                        }
+                        
+                    }
+                };
+            
+                xmlhttp6.open("POST", url6, true);
+                xmlhttp6.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                var params = 'Operation=ListNumberOfEmergencyCases';
+                xmlhttp6.send(params);
     } 
     
     function notifyMe1() {
@@ -368,6 +413,7 @@ li a:hover:not(.active) {
             {
                 notifyMe1();
                 $.playSound("tone.mp3")
+                updateTable();
             }
         
 		document.getElementById("EmergencyCase").innerHTML = JSONResponse2["data"];
@@ -392,7 +438,83 @@ li a:hover:not(.active) {
         
         
 	};
-}        
+}     
+            
+            function updateTable(){
+          
+          var xmlhttp6 = new XMLHttpRequest();
+                var url6 = "http://localhost/ehealth/TablesManagement.php";
+                xmlhttp6.onreadystatechange = function () {
+                    if (xmlhttp6.readyState == 4 && xmlhttp6.status == 200) {
+                        response6 = xmlhttp6.responseText;
+                        JSONResponse6 = JSON.parse(response6);
+                        
+                        console.log(JSONResponse6);          
+                        
+                        if(parseInt(JSONResponse6["NumberOfEmergencyCases"])!=0)
+                        {
+                            document.getElementById("EmergencyCase").innerHTML = JSONResponse6["NumberOfEmergencyCases"];
+                        }
+                        
+                    }
+                };
+            
+                xmlhttp6.open("POST", url6, true);
+                xmlhttp6.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                var params = 'Operation=ListNumberOfEmergencyCases';
+                xmlhttp6.send(params);
+            
+    
+        
+        var xmlhttp = new XMLHttpRequest();
+                var url = "http://localhost/ehealth/TablesManagement.php";
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        response = xmlhttp.responseText;
+                        console.log(response); 
+                        JSONResponse = JSON.parse(response);
+
+                        console.log(response);
+                        DivContent = "" ;
+                        for(jidx=0;jidx<JSONResponse["Result"].length;jidx++){
+                            DivContent = DivContent + '<tr>';
+                            DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["PatientID"] + '</td>';
+                            DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["Name"] + '</td>';
+                            DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["Surname"] + '</td>';
+                            DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["Description"] + '</td>';
+                            DivContent = DivContent + '<td> ' + JSONResponse["Result"][jidx]["TimeOfOccurrence"] + '</td>';
+                            DivContent = DivContent + '<td>';
+                            DivContent = DivContent + '<a href="http://localhost/ehealth/Map.php?Latitude=' + JSONResponse["Result"][jidx]["Latitude"] + '&Longitude='+JSONResponse["Result"][jidx]["Longitude"] +'">Location</a>';
+                            DivContent = DivContent + '</td>';
+                            
+                            if(parseInt(JSONResponse["Result"][jidx]["Flag"])==0)
+                            {
+                                DivContent = DivContent + '<td> Confirmed</td>';
+                            }
+                            else
+                            {
+                                DivContent = DivContent + '<td>';
+                                DivContent = DivContent + '<button type="button" onclick="myFunction(\''+JSONResponse["Result"][jidx]["EmergencyCaseID"]+'\')" id="">Confirm</button>';
+                                DivContent = DivContent + '</td>';
+                            }
+                            
+                            DivContent = DivContent + '</tr>';
+                              
+                             
+                        }
+                        
+                        
+                         $('#EmergencyCaseRow').empty();
+                        $('#EmergencyCaseRow').append(DivContent);
+                    }
+                };
+                
+                xmlhttp.open("POST", url, true);
+                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                var params = 'Operation=ListAllEmergencyCases';
+                xmlhttp.send(params);
+      }
+            
     </script>
     <?php
     } else {

@@ -484,7 +484,7 @@ switch ($_REQUEST["Operation"]) {
             if((isset($_REQUEST["PatientID"]))&&(!empty($_REQUEST["PatientID"])))
             {
                 $counter=0;
-                $ReadingQuery = 'SELECT * FROM sensorreading WHERE PatientID='.$_REQUEST['PatientID'].' ORDER BY ReadingTime DESC';
+                $ReadingQuery = 'SELECT * FROM sensorreading WHERE PatientID='.$_REQUEST['PatientID'].' ORDER BY SensorReadingID DESC';
                 $ReadingQueryResult = mysqli_query($DBConnection, $ReadingQuery);
 
 
@@ -501,6 +501,7 @@ switch ($_REQUEST["Operation"]) {
 
                    $Reading= $Reading.'}';
                    $ResultJSON= $ResultJSON . $Reading;
+                    
 
                 }
 
@@ -514,7 +515,7 @@ switch ($_REQUEST["Operation"]) {
                 
                 
                 $counter=0;
-                $ReadingQuery = 'SELECT * FROM sensorreading WHERE PatientID='.$Patientrow['PatientID'].' ORDER BY ReadingTime DESC';
+                $ReadingQuery = 'SELECT * FROM sensorreading WHERE PatientID='.$Patientrow['PatientID'].' ORDER BY SensorReadingID DESC';
                 $ReadingQueryResult = mysqli_query($DBConnection, $ReadingQuery);
 
 
@@ -531,7 +532,66 @@ switch ($_REQUEST["Operation"]) {
 
                    $Reading= $Reading.'}';
                    $ResultJSON= $ResultJSON . $Reading;
+                    
+                }
 
+               $ResultJSON= $ResultJSON . ']}';
+            
+        }
+        break;
+        case "ListAllSensorReadings2":
+            if((isset($_REQUEST["PatientID"]))&&(!empty($_REQUEST["PatientID"])))
+            {
+                $counter=0;
+                $ReadingQuery = 'SELECT * FROM sensorreading WHERE PatientID='.$_REQUEST['PatientID'];
+                $ReadingQueryResult = mysqli_query($DBConnection, $ReadingQuery);
+
+
+                $ResultJSON = '{"Operation" : "ListAllSensorReadings","Result" :[';
+                while($Readingrow = mysqli_fetch_assoc($ReadingQueryResult)) {
+                   if($counter!=0)
+                    {
+                        $ResultJSON= $ResultJSON . ",";
+                    }
+                    $counter=$counter+1;
+                    $Reading = '{"SensorReadingID" : "' . $Readingrow["SensorReadingID"] . '" , "HeartRate" : "' . $Readingrow["HeartRate"] . '" , "Temperature" : "' . $Readingrow["Temperature"] . '" , "SPO2" : "' . $Readingrow["SPO2"] . '" , "ReadingTime" : "' . $Readingrow["ReadingTime"] .'"';
+
+
+
+                   $Reading= $Reading.'}';
+                   $ResultJSON= $ResultJSON . $Reading;
+                    
+
+                }
+
+               $ResultJSON= $ResultJSON . ']}';
+            }
+        else{
+                $PatientQuery = 'SELECT * FROM patient WHERE UserID='.$_SESSION["UserID"];
+                $PatientQueryResult = mysqli_query($DBConnection, $PatientQuery);
+                $Patientrow = mysqli_fetch_assoc($PatientQueryResult);
+                
+                
+                
+                $counter=0;
+                $ReadingQuery = 'SELECT * FROM sensorreading WHERE PatientID='.$Patientrow['PatientID'];
+                $ReadingQueryResult = mysqli_query($DBConnection, $ReadingQuery);
+
+
+                $ResultJSON = '{"Operation" : "ListAllSensorReadings","Result" :[';
+                while($Readingrow = mysqli_fetch_assoc($ReadingQueryResult)) {
+                   if($counter!=0)
+                    {
+                        $ResultJSON= $ResultJSON . ",";
+                    }
+                    $counter=$counter+1;
+                    $Reading = '{"SensorReadingID" : "' . $Readingrow["SensorReadingID"] . '" , "HeartRate" : "' . $Readingrow["HeartRate"] . '" , "Temperature" : "' . $Readingrow["Temperature"] . '" , "SPO2" : "' . $Readingrow["SPO2"] . '" , "ReadingTime" : "' . $Readingrow["ReadingTime"] .'"';
+
+
+
+                   $Reading= $Reading.'}';
+                   $ResultJSON= $ResultJSON . $Reading;
+                    
                 }
 
                $ResultJSON= $ResultJSON . ']}';
@@ -708,38 +768,31 @@ switch ($_REQUEST["Operation"]) {
                 $Doctorrow = mysqli_fetch_assoc($DoctorQueryResult);
                     
                 
-                $DoctorPatientQuery = 'SELECT * FROM doctorpatient WHERE DoctorID='.$Doctorrow['DoctorID'];
-                $DoctorPatientQueryResult = mysqli_query($DBConnection, $DoctorPatientQuery);
             
             $counter=0;
             $ResultJSON = '{"Operation" : "ListAllEmergencyCases","Result" :[';
-            while($DoctorPatientrow = mysqli_fetch_assoc($DoctorPatientQueryResult)) { 
+       
                     
-                $EmergencyCaseQuery = 'SELECT * FROM emergencycase WHERE Flag!=0 AND PatientID='.$DoctorPatientrow['PatientID'];
+                $EmergencyCaseQuery = 'SELECT * FROM doctorpatient AS d,patient AS p,emergencycase AS e WHERE d.PatientID=e.PatientID AND d.PatientID=p.PatientID AND d.DoctorID='.$Doctorrow['DoctorID'].' ORDER BY EmergencyCaseID DESC';
                 $EmergencyCaseQueryResult = mysqli_query($DBConnection, $EmergencyCaseQuery);      
                        
-                 while($EmergencyCaserow = mysqli_fetch_assoc($EmergencyCaseQueryResult)) {               
-                $PatientQuery = 'SELECT * FROM patient WHERE PatientID='.$EmergencyCaserow["PatientID"];
-                $PatientQueryResult = mysqli_query($DBConnection, $PatientQuery);
-
-                
-                        
-                while($Patientrow = mysqli_fetch_assoc($PatientQueryResult)) {
+                 while($EmergencyCaserow = mysqli_fetch_assoc($EmergencyCaseQueryResult)) {
+                     
                    if($counter!=0)
                     {
                         $ResultJSON= $ResultJSON . ",";
                     }
                     $counter=$counter+1;
-                    $Patient = '{"PatientID" : "' . $Patientrow["PatientID"] . '" , "Name" : "' . $Patientrow["Name"] . '" , "Surname" : "' . $Patientrow["Surname"] . '" , "BirthDate" : "' . $Patientrow["BirthDate"] .'" , "EmergencyCaseID" : "' . $EmergencyCaserow["EmergencyCaseID"] .'"';
+                    $Patient = '{"PatientID" : "' . $EmergencyCaserow["PatientID"] . '" , "Name" : "' . $EmergencyCaserow["Name"] . '" , "Surname" : "' . $EmergencyCaserow["Surname"] . '" , "BirthDate" : "' . $EmergencyCaserow["BirthDate"] .'" , "EmergencyCaseID" : "' . $EmergencyCaserow["EmergencyCaseID"] .'" , "Latitude" : "' . $EmergencyCaserow["Latitude"] .'" , "Longitude" : "' . $EmergencyCaserow["Longitude"] .'" , "TimeOfOccurrence" : "' . $EmergencyCaserow["TimeOfOccurrence"] .'" , "Description" : "' . $EmergencyCaserow["Description"] .'" , "Flag" : "' . $EmergencyCaserow["Flag"] .'"';
 
                    $Patient= $Patient.'}';
                    $ResultJSON= $ResultJSON . $Patient;
 
-                    }                          
+                                            
                                         
                  }
                      
-            }
+            
         $ResultJSON= $ResultJSON . ']}';
         break;
         case "ConfirmEmergencyCase":

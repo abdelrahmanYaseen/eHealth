@@ -75,7 +75,7 @@ li a:hover:not(.active) {
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <i class="icon-settings font-red"></i>
-                                                <span class="caption-subject font-red sbold uppercase"><center><h1 style="font-family: Times;font-size: 40px;"><br>Sensor Reading Table</h1></center></span>
+                                                <span class="caption-subject font-red sbold uppercase"><center><h1 style="font-family: Times;font-size: 40px;"><br>Sensor Readings Table</h1></center></span>
                                             </div>
                                             
                                         </div>
@@ -98,7 +98,7 @@ li a:hover:not(.active) {
                                                 <thead>
                                                     <tr>
                                                         <th> SensorReadingID</th>
-                                                        <th> HeartRate  </th>
+                                                        <th> ECG  </th>
                                                         <th> Temperature </th>
                                                         <th> SPO2 </th>
                                                         <th> ReadingTime </th>

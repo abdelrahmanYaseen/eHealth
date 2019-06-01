@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Doctor Home Page</title>
+  <title>Map</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -50,7 +50,9 @@ header .active {
     color: black;
     text-align: left;
 }
+    
       
+    
       
 </style>
 </head>
@@ -61,7 +63,7 @@ header .active {
 ?>
 <header>
     <ul id="header">
-  <li><a class="active" href="http://localhost/ehealth/DoctorHome.php">Home</a></li>
+  <li><a  href="http://localhost/ehealth/DoctorHome.php">Home</a></li>
   <li><a href="http://localhost/ehealth/DoctorPatientTable.php">Patients Table</a></li>
         <li><a href="http://localhost/ehealth/DoctorContacts.php">Chat<span id="serverData" class="badge" style="background: red;"></span></a></li>
         <li><a href="http://localhost/ehealth/EmergencyCasesTable.php">Emergency Case<span id="EmergencyCase" class="badge" style="background: red;"></span></a></li>
@@ -74,21 +76,32 @@ header .active {
     <br>
     <br>
 
-<div class="main-div">
-   
-   <h2 style="font-family: Times;"></h2>
+        
+                <div id="map" style="width:100%;height:500px"></div>
+                <script>
+                function myMap() {
+                        var parsedUrl = new URL(window.location.href);
+                                Longitude = parsedUrl.searchParams.get("Longitude");
+                                Latitude = parsedUrl.searchParams.get("Latitude");
 
-   <ul style="font-size: 18px;background-color: white;border-radius: 8px;width: 250px; padding: 25px 25px 25px 25px;opacity:0.9;">
-       <li><a  href="http://localhost/ehealth/DoctorPatientTable.php">Patients Table</a></li>
-       <li><a href="http://localhost/ehealth/DoctorContacts.php">Chat with Patients</a></li>
-       <li><a href="http://localhost/ehealth/EmergencyCasesTable.php">Emergency Cases</a></li>
-    </ul>
 
-    </div>
+                      var myCenter = new google.maps.LatLng(Latitude,Longitude);
+                      var mapCanvas = document.getElementById("map");
+                      var mapOptions = {center: myCenter, zoom: 16};
+                      var map = new google.maps.Map(mapCanvas, mapOptions);
+                      var marker = new google.maps.Marker({position:myCenter});
+                      marker.setMap(map);
+                }
+                </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCThhtZvpdFq_tdqsjnWQKJXmP-d2fxrzQ&callback=myMap"></script>
 
+
+  
       
     
     </div>
+ 
+   
     <script type="text/javascript">
         
         window.onload = function () {     

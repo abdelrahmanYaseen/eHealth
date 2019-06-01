@@ -90,7 +90,7 @@ header .active {
                 </div>
     
                 
-            </div></div>
+            </div> </div>
     </div>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script>
@@ -104,15 +104,16 @@ header .active {
             PatientID=parsedUrl.searchParams.get("PatientID");
         
   $.ajax({
-    url : "http://localhost/ehealth/TablesManagement.php?Operation=ListAllSensorReadings&PatientID="+PatientID,
+    url : "http://localhost/ehealth/TablesManagement.php?Operation=ListAllSensorReadings2&PatientID="+PatientID,
     type : "GET",
     success : function(data){
       console.log(data);
 JSONResponse = JSON.parse(data);
       var measurementdate = [];
       var rates = [];
-
-      for(jidx=JSONResponse["Result"].length-1;jidx>=0;jidx--){
+        var counter=0;
+    if(JSONResponse["Result"].length>=50) {   
+      for(jidx=(JSONResponse["Result"].length-50);jidx<(JSONResponse["Result"].length);jidx++){
      //   measurementdate.push(JSONResponse["Result"][jidx]["ReadingTime"]);
           var str = JSONResponse["Result"][jidx]["ReadingTime"];
                             var date = new Date(str);
@@ -122,7 +123,31 @@ JSONResponse = JSON.parse(data);
         	
         measurementdate.push(hour+":"+minutes+":"+seconds);
         rates.push(JSONResponse["Result"][jidx]["HeartRate"]);
+          counter=counter+1;
+          if(counter==50)
+              {
+                  break;
+              }
       }
+    }
+        else{
+            for(jidx=0;jidx<(JSONResponse["Result"].length);jidx++){
+     //   measurementdate.push(JSONResponse["Result"][jidx]["ReadingTime"]);
+          var str = JSONResponse["Result"][jidx]["ReadingTime"];
+                            var date = new Date(str);
+                            var hour = date.getHours(); 
+                            var minutes = date.getMinutes(); 
+                            var seconds = date.getSeconds();
+        	
+        measurementdate.push(hour+":"+minutes+":"+seconds);
+        rates.push(JSONResponse["Result"][jidx]["HeartRate"]);
+          counter=counter+1;
+          if(counter==50)
+              {
+                  break;
+              }
+      }
+        }
 
         console.log(measurementdate);
         console.log(rates);
@@ -130,7 +155,7 @@ JSONResponse = JSON.parse(data);
         labels: measurementdate,
         datasets: [
           {
-            label: "Heart Rate",
+            label: "ECG",
             fill: false,
             lineTension: 0.1,
             backgroundColor: "rgba(211, 72, 54, 0.75)",
@@ -228,9 +253,9 @@ JSONResponse = JSON.parse(data);
                         }
                         standardDeviation=standardDeviation/(JSONResponse["Result"].length-1);
                         standardDeviation=Math.sqrt(standardDeviation);
-                        
-                        DivContent=DivContent+"<br><p style='margin-left:2.5em'>Mean: "+mean.toFixed(2);
-                        DivContent=DivContent+"<br>     Standard deviation: "+standardDeviation.toFixed(2)+"</p>";
+                        DivContent=DivContent+"<br><p style='margin-left:2.5em'> </p>";
+                  //      DivContent=DivContent+"<br><p style='margin-left:2.5em'>Mean: "+mean.toFixed(2);
+                    //    DivContent=DivContent+"<br>     Standard deviation: "+standardDeviation.toFixed(2)+"</p>";
                          $('#mean').empty();
                         $('#mean').append(DivContent);
                     }

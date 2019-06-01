@@ -48,9 +48,9 @@ header .active {
     </head>
     <header>
     <ul id="header">
-  <li><a class="active" href="http://localhost/ehealth/PatientHome.php">Home</a></li>
+  <li><a  href="http://localhost/ehealth/PatientHome.php">Home</a></li>
   <li><a href="http://localhost/ehealth/SensorReadingTable.php">Sensor Reading</a></li>
-        <li><a href="http://localhost/ehealth/contacts.php">Chat</a></li>
+        <li><a class="active" href="http://localhost/ehealth/contacts.php">Chat</a></li>
    <li><a href="http://localhost/ehealth/logout.php" style="position: absolute;right: 0px;">logout</a></li>
 </ul>
     
@@ -103,10 +103,10 @@ $(document).ready(function(){
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         response = xmlhttp.responseText;
-                        console.log(response); 
+                        //console.log(response); 
                         JSONResponse = JSON.parse(response);
 
-                        console.log(response);
+                        //console.log(response);
                         DivContent = '<table class="table table-bordered table-striped"><tr><td>Username</td><td>Status</td><td>Action</td></tr>' ;
                         for(jidx=0;jidx<JSONResponse["Result"].length;jidx++){
                             DivContent = DivContent + '<tr>';

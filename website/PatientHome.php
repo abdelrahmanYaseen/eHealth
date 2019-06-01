@@ -59,7 +59,7 @@ header .active {
 <header>
     <ul id="header">
   <li><a class="active" href="http://localhost/ehealth/PatientHome.php">Home</a></li>
-  <li><a href="http://localhost/ehealth/SensorReadingTable.php">Sensor Reading</a></li>
+  <li><a href="http://localhost/ehealth/SensorReadingTable.php">Sensor Readings</a></li>
     <li><a href="http://localhost/ehealth/contacts.php">Chat<span id="serverData" class="badge" style="background: red;"></span></a></li>    
    <li><a href="http://localhost/ehealth/logout.php" style="position: absolute;right: 0px;">logout</a></li>
 </ul>
@@ -75,7 +75,7 @@ header .active {
    <h2 style="font-family: Times;"></h2>
    <ul style="font-size: 18px;background-color: white;border-radius: 8px;width: 250px; padding: 25px 25px 25px 25px;opacity:0.9;">
        <li><a  href="http://localhost/ehealth/SensorReadingTable.php" >Sensor Readings</a></li>
-       <li><a href="http://localhost/ehealth/contacts.php">Chat With Doctor</a></li>
+       <li><a href="http://localhost/ehealth/contacts.php">Chat with Doctor</a></li>
     </ul>
 
     </div>

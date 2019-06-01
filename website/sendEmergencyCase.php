@@ -28,9 +28,8 @@ $DoctorQuery = 'SELECT * FROM doctor WHERE UserID='.$_SESSION["UserID"];
             
             $counter1=0;
             $counter2=0;
-            while($DoctorPatientrow = mysqli_fetch_assoc($DoctorPatientQueryResult)) { 
                     
-                    $EmergencyCaseQuery = 'SELECT * FROM emergencycase WHERE PatientID='.$DoctorPatientrow['PatientID'];
+                    $EmergencyCaseQuery = 'SELECT * FROM doctorpatient AS d,emergencycase As e WHERE d.patientID=e.patientID AND d.DoctorID='.$Doctorrow['DoctorID'];
                     $EmergencyCaseQueryResult = mysqli_query($DBConnection, $EmergencyCaseQuery);
                    
                     while($EmergencyCaserow = mysqli_fetch_assoc($EmergencyCaseQueryResult)) {
@@ -45,8 +44,7 @@ $DoctorQuery = 'SELECT * FROM doctor WHERE UserID='.$_SESSION["UserID"];
                             $QueryResult = mysqli_query($DBConnection, $Query);
                         }                        
                     }                 
-                     
-            }
+                              
 
 if($counter1!=0)
 {

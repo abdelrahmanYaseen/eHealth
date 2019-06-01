@@ -198,6 +198,11 @@ li a:hover:not(.active) {
                                 $('#message').empty();
                                 $('#message').append(DivContent);           
                             }
+                        else{
+                            DivContent='<p style="font-family: Times;color:green;font-size: 18px;">Successful Deletion</p>'
+                                $('#message').empty();
+                                $('#message').append(DivContent);   
+                        }
                         
                     }
                 };

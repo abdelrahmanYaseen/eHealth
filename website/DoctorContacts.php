@@ -51,9 +51,9 @@ header .active {
     </head>
     <header>
     <ul id="header">
-  <li><a class="active" href="http://localhost/ehealth/DoctorHome.php">Home</a></li>
+  <li><a  href="http://localhost/ehealth/DoctorHome.php">Home</a></li>
   <li><a href="http://localhost/ehealth/DoctorPatientTable.php">Patients Table</a></li>
-     <li><a href="http://localhost/ehealth/DoctorContacts.php">Chat<span id="serverData" class="badge" style="background: red;"></span></a></li>
+     <li><a class="active" href="http://localhost/ehealth/DoctorContacts.php">Chat<span id="serverData" class="badge" style="background: red;"></span></a></li>
         <li><a href="http://localhost/ehealth/EmergencyCasesTable.php">Emergency Case<span id="EmergencyCase" class="badge" style="background: red;"></span></a></li>
     <li><a href="http://localhost/ehealth/logout.php" style="position: absolute;right: 0px;">logout</a></li>
 </ul>
@@ -119,6 +119,8 @@ header .active {
 $(document).ready(function(){
 
  fetch_user();
+  
+    
 
  setInterval(function(){
   update_last_activity();
@@ -133,10 +135,10 @@ $(document).ready(function(){
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                         response = xmlhttp.responseText;
-                        console.log(response); 
+                        //console.log(response); 
                         JSONResponse = JSON.parse(response);
 
-                        console.log(response);
+                        
                         DivContent = '<table class="table table-bordered table-striped"><tr><td>Username</td><td>Status</td><td>Action</td></tr>' ;
                         for(jidx=0;jidx<JSONResponse["Result"].length;jidx++){
                             DivContent = DivContent + '<tr>';
