@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2019 at 04:15 PM
+-- Generation Time: Jun 01, 2019 at 07:01 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -71,7 +71,13 @@ INSERT INTO `chatnotification` (`SessionID`, `UserID`, `NumberOfMessages`) VALUE
 (38, 69, 0),
 (39, 70, 0),
 (40, 71, 1),
-(41, 72, 0);
+(41, 72, 0),
+(42, 73, 0),
+(43, 74, 0),
+(44, 75, 0),
+(45, 76, 0),
+(46, 77, 0),
+(47, 78, 0);
 
 -- --------------------------------------------------------
 
@@ -142,9 +148,9 @@ CREATE TABLE `doctorpatient` (
 
 INSERT INTO `doctorpatient` (`DoctorPatientID`, `DoctorID`, `PatientID`) VALUES
 (1, 1, 2),
-(32, 5, 33),
+(32, 31, 33),
 (33, 1, 34),
-(34, 31, 35),
+(34, 33, 35),
 (36, 1, 37);
 
 -- --------------------------------------------------------
@@ -172,11 +178,11 @@ INSERT INTO `emergencycase` (`EmergencyCaseID`, `PatientID`, `Description`, `Lat
 (17, 34, 'Actuators are showing that the user is Lying down but ECG readings indicates that the activity is Running', 0, 0, '2019-05-21 17:56:25', 0),
 (18, 35, 'Actuators are showing that the user is Lying down but ECG readings indicates that the activity is Running', 0, 0, '2019-05-21 17:56:25', 2),
 (19, 2, 'Actuators are showing that the user is Lying down but ECG readings indicates that the activity is Running', 35.248353, 33.024055, '2019-05-21 17:56:58', 0),
-(20, 2, 'ECG readings indicates that the activity is Jogging but Actuators are showing that the user is Standing still', 35.1981, 32.9914, '2019-05-31 19:36:25', 2),
-(21, 2, 'ECG readings indicates that the activity is Jogging but Actuators are showing that the user is Standing still', 35.1981, 32.9914, '2019-05-31 19:37:01', 2),
-(22, 2, 'ECG readings indicates that the activity is Cycling but Actuators are showing that the user is Sitting and relaxing', 35.1981, 32.9914, '2019-05-31 19:38:05', 2),
-(23, 2, 'ECG readings indicates that the activity is Jogging but Actuators are showing that the user is Sitting and relaxing', 36.9081, 30.6956, '2019-06-01 13:11:55', 2),
-(24, 2, 'ECG readings indicates that the activity is Running but Actuators are showing that the user is Lying down', 36.9081, 30.6956, '2019-06-01 14:00:33', 2);
+(20, 2, 'ECG readings indicates that the activity is Jogging but Actuators are showing that the user is Standing still', 35.1981, 32.9914, '2019-05-31 19:36:25', 0),
+(21, 2, 'ECG readings indicates that the activity is Jogging but Actuators are showing that the user is Standing still', 35.1981, 32.9914, '2019-05-31 19:37:01', 0),
+(22, 2, 'ECG readings indicates that the activity is Cycling but Actuators are showing that the user is Sitting and relaxing', 35.1981, 32.9914, '2019-05-31 19:38:05', 0),
+(23, 2, 'ECG readings indicates that the activity is Jogging but Actuators are showing that the user is Sitting and relaxing', 36.9081, 30.6956, '2019-06-01 13:11:55', 0),
+(24, 2, 'ECG readings indicates that the activity is Running but Actuators are showing that the user is Lying down', 36.9081, 30.6956, '2019-06-01 14:00:33', 0);
 
 -- --------------------------------------------------------
 
@@ -198,7 +204,7 @@ INSERT INTO `login_details` (`login_details_id`, `user_id`, `last_activity`) VAL
 (7, 2, '2019-06-01 04:29:26'),
 (18, 18, '2019-04-23 17:12:02'),
 (17, 17, '2019-04-23 17:09:01'),
-(11, 4, '2019-06-01 04:29:28'),
+(11, 4, '2019-06-01 14:18:35'),
 (23, 23, '2019-04-24 13:34:42'),
 (22, 22, '2019-04-24 13:12:23'),
 (21, 21, '2019-04-24 13:11:04'),
@@ -253,7 +259,13 @@ INSERT INTO `login_details` (`login_details_id`, `user_id`, `last_activity`) VAL
 (68, 69, '2019-05-21 05:53:26'),
 (69, 70, '0000-00-00 00:00:00'),
 (70, 71, '2019-06-01 12:40:56'),
-(71, 72, '0000-00-00 00:00:00');
+(71, 72, '0000-00-00 00:00:00'),
+(72, 73, '0000-00-00 00:00:00'),
+(73, 74, '0000-00-00 00:00:00'),
+(74, 75, '0000-00-00 00:00:00'),
+(75, 76, '0000-00-00 00:00:00'),
+(76, 77, '0000-00-00 00:00:00'),
+(77, 78, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -451,7 +463,57 @@ INSERT INTO `sensorreading` (`SensorReadingID`, `PatientID`, `HeartRate`, `Tempe
 (198, 2, -0.80795, 37.1, 95.7, '2019-06-01 17:00:32'),
 (199, 2, -0.52747, 37.1, 95.7, '2019-06-01 17:00:32'),
 (200, 2, -0.42282, 37.1, 95.7, '2019-06-01 17:00:32'),
-(201, 2, -0.16745, 37.1, 95.7, '2019-06-01 17:00:32');
+(201, 2, -0.16745, 37.1, 95.7, '2019-06-01 17:00:32'),
+(202, 2, -0.27211, 37.1, 95.7, '2019-06-01 19:32:21'),
+(203, 2, -0.37258, 37.1, 95.7, '2019-06-01 19:32:21'),
+(204, 2, -0.4563100000000001, 37.1, 95.7, '2019-06-01 19:32:21'),
+(205, 2, -0.54422, 37.1, 95.7, '2019-06-01 19:32:21'),
+(206, 2, -0.51073, 37.1, 95.7, '2019-06-01 19:32:21'),
+(207, 2, -0.38932, 37.1, 95.7, '2019-06-01 19:32:21'),
+(208, 2, -0.30141, 37.1, 95.7, '2019-06-01 19:32:21'),
+(209, 2, -0.29304, 37.1, 95.7, '2019-06-01 19:32:21'),
+(210, 2, -0.25118, 37.1, 95.7, '2019-06-01 19:32:21'),
+(211, 2, -0.27211, 37.1, 95.7, '2019-06-01 19:32:21'),
+(212, 2, -0.23443000000000006, 37.1, 95.7, '2019-06-01 19:32:21'),
+(213, 2, -0.27211, 37.1, 95.7, '2019-06-01 19:32:21'),
+(214, 2, -0.27211, 37.1, 95.7, '2019-06-01 19:32:21'),
+(215, 2, -0.28467, 37.1, 95.7, '2019-06-01 19:32:21'),
+(216, 2, -0.3056, 37.1, 95.7, '2019-06-01 19:32:21'),
+(217, 2, -0.30979, 37.1, 95.7, '2019-06-01 19:32:21'),
+(218, 2, -0.28048, 37.1, 95.7, '2019-06-01 19:32:21'),
+(219, 2, -0.19676, 37.1, 95.7, '2019-06-01 19:32:21'),
+(220, 2, -0.23443000000000006, 37.1, 95.7, '2019-06-01 19:32:21'),
+(221, 2, -0.3056, 37.1, 95.7, '2019-06-01 19:32:21'),
+(222, 2, -0.29304, 37.1, 95.7, '2019-06-01 19:32:21'),
+(223, 2, -0.32234, 37.1, 95.7, '2019-06-01 19:32:21'),
+(224, 2, -0.49817, 37.1, 95.7, '2019-06-01 19:32:21'),
+(225, 2, 0.92098, 37.1, 95.7, '2019-06-01 19:32:21'),
+(226, 2, 2.0722, 37.1, 95.7, '2019-06-01 19:32:21'),
+(227, 2, -0.36002, 37.1, 95.7, '2019-06-01 19:32:21'),
+(228, 2, -0.33909, 37.1, 95.7, '2019-06-01 19:32:21'),
+(229, 2, -0.38095, 37.1, 95.7, '2019-06-01 19:32:21'),
+(230, 2, -0.34746, 37.1, 95.7, '2019-06-01 19:32:21'),
+(231, 2, -0.30979, 37.1, 95.7, '2019-06-01 19:32:21'),
+(232, 2, -0.26792, 37.1, 95.7, '2019-06-01 19:32:21'),
+(233, 2, -0.23862, 37.1, 95.7, '2019-06-01 19:32:21'),
+(234, 2, -0.22606, 37.1, 95.7, '2019-06-01 19:32:21'),
+(235, 2, -0.30141, 37.1, 95.7, '2019-06-01 19:32:21'),
+(236, 2, -0.36002, 37.1, 95.7, '2019-06-01 19:32:21'),
+(237, 2, -0.37258, 37.1, 95.7, '2019-06-01 19:32:21'),
+(238, 2, -0.31397, 37.1, 95.7, '2019-06-01 19:32:21'),
+(239, 2, -0.15489, 37.1, 95.7, '2019-06-01 19:32:21'),
+(240, 2, -0.0041863, 37.1, 95.7, '2019-06-01 19:32:21'),
+(241, 2, 0.025118, 37.1, 95.7, '2019-06-01 19:32:21'),
+(242, 2, 0.075353, 37.1, 95.7, '2019-06-01 19:32:21'),
+(243, 2, 0.14232999999999998, 37.1, 95.7, '2019-06-01 19:32:21'),
+(244, 2, 0.17164, 37.1, 95.7, '2019-06-01 19:32:21'),
+(245, 2, 0.1842, 37.1, 95.7, '2019-06-01 19:32:21'),
+(246, 2, 0.21769, 37.1, 95.7, '2019-06-01 19:32:21'),
+(247, 2, 0.25118, 37.1, 95.7, '2019-06-01 19:32:21'),
+(248, 2, 0.28048, 37.1, 95.7, '2019-06-01 19:32:21'),
+(249, 2, 0.35165, 37.1, 95.7, '2019-06-01 19:32:21'),
+(250, 2, 0.38514, 37.1, 95.7, '2019-06-01 19:32:21'),
+(251, 2, 0.46468, 37.1, 95.7, '2019-06-01 19:32:21');
 
 -- --------------------------------------------------------
 
@@ -508,7 +570,12 @@ INSERT INTO `standardrates` (`StandardRatesID`, `PatientID`, `LowHeartRate`, `Hi
 (30, 34, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00'),
 (31, 35, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00'),
 (32, 36, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00'),
-(33, 37, 0, 0, 0, 0, 0, 0, '2019-05-19 20:13:22');
+(33, 37, 0, 0, 0, 0, 0, 0, '2019-05-19 20:13:22'),
+(34, 38, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00'),
+(35, 39, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00'),
+(36, 40, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00'),
+(37, 41, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00'),
+(38, 42, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -528,16 +595,16 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`UserID`, `Username`, `Password`, `UserType`) VALUES
-(2, 'Batoul', '12345678aA', 'Patient'),
-(4, 'Abdelrahman', '12345678aA', 'Doctor'),
-(67, 'AhmadDibs', 'ahmad1234A', 'Patient'),
-(69, 'NihadSalam', 'Nihad1234Q', 'Patient'),
-(71, 'AdhamRaihan', '1234asdfD', 'Patient'),
-(68, 'AymanTammam', 'ayman1234A', 'Patient'),
-(64, 'DanaAlhalabi', 'dana1234B', 'Doctor'),
-(63, 'Khalid', '12345678aA', 'Admin'),
-(72, 'MohsinShamaa', 'abcdef123E', 'Doctor'),
-(65, 'AhmadAltawil', 'ahmad1234S', 'Doctor');
+(2, 'Batoul', 'bff29fe2c3269812851d6fda69b3472d', 'Patient'),
+(4, 'Abdelrahman', 'bff29fe2c3269812851d6fda69b3472d', 'Doctor'),
+(67, 'AhmadDibs', 'c0e4d15387558c68c10e94ea65cf468c', 'Patient'),
+(69, 'NihadSalam', 'aa906a122e7e5b6b3590ad72c75cf5c0', 'Patient'),
+(71, 'AdhamRaihan', '586324ae90ce43758e71d043d268db41', 'Patient'),
+(68, 'AymanTammam', '3304a163bf2eced7ba43884b0a1668cc', 'Patient'),
+(64, 'DanaAlhalabi', '189e956b253288e237d9b1b96042a1e8', 'Doctor'),
+(63, 'Khalid', 'bff29fe2c3269812851d6fda69b3472d', 'Admin'),
+(72, 'MohsinShamaa', 'b133cd8b3d21558b09a18fc13d350e73', 'Doctor'),
+(65, 'AhmadAltawil', 'd107d190bbc5b5402b31c69350ccf3ba', 'Doctor');
 
 --
 -- Indexes for dumped tables
@@ -623,7 +690,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `chatnotification`
 --
 ALTER TABLE `chatnotification`
-  MODIFY `SessionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `SessionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `chat_message`
@@ -635,49 +702,49 @@ ALTER TABLE `chat_message`
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `DoctorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `DoctorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `doctorpatient`
 --
 ALTER TABLE `doctorpatient`
-  MODIFY `DoctorPatientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `DoctorPatientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `emergencycase`
 --
 ALTER TABLE `emergencycase`
-  MODIFY `EmergencyCaseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `EmergencyCaseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `PatientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `PatientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `sensorreading`
 --
 ALTER TABLE `sensorreading`
-  MODIFY `SensorReadingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
+  MODIFY `SensorReadingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=252;
 
 --
 -- AUTO_INCREMENT for table `standardrates`
 --
 ALTER TABLE `standardrates`
-  MODIFY `StandardRatesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `StandardRatesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
