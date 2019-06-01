@@ -11,8 +11,10 @@ mysqli_query($DBConnection, "SET NAMES utf8");
 $ResultJSON = '{"Operation" : "NoOP", "Result" : "-100" }';
 switch ($_REQUEST["Operation"]) {
     case "Login":
-    
-        $ControlUserSQL = "Select * from user where Username='" . $_REQUEST["Username"] . "' and Password='" . $_REQUEST["Password"] . "'";
+        
+        $pass=MD5($_REQUEST["Password"]);
+        
+        $ControlUserSQL = "Select * from user where Username='" . $_REQUEST["Username"] . "' and Password='" . $pass . "'";
         $ControlUser = mysqli_query($DBConnection, $ControlUserSQL);
         
         if (mysqli_affected_rows($DBConnection) > 0) {

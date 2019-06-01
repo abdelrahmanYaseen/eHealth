@@ -58,7 +58,7 @@ switch ($_REQUEST["Operation"]) {
         else{
         
             $counter=0;
-            $Query = "SELECT * FROM patient";
+            $Query = "SELECT * FROM patient ORDER BY PatientID";
             $QueryResult = mysqli_query($DBConnection, $Query);
 
             $ResultJSON = '{"Operation" : "ListAllPatients","Result" :[';
@@ -148,7 +148,9 @@ switch ($_REQUEST["Operation"]) {
                     break;
                 }
             }
-            $Query = 'INSERT INTO user (Username,Password,UserType) VALUES ("'.$_REQUEST['Username'].'","'.$_REQUEST['Password'].'","Patient")';
+            $pass=MD5($_REQUEST['Password']);
+        
+            $Query = 'INSERT INTO user (Username,Password,UserType) VALUES ("'.$_REQUEST['Username'].'","'.$pass.'","Patient")';
             $QueryResult = mysqli_query($DBConnection, $Query);
             if($QueryResult==True)
             {
@@ -221,11 +223,13 @@ switch ($_REQUEST["Operation"]) {
                     break;
                 }
             }
-        
+            
             $Query = 'UPDATE patient SET Name="'.$_REQUEST['Name'].'",Surname="'.$_REQUEST['Surname'].'",BirthDate="'.$_REQUEST['BirthDate'].'" WHERE PatientID="'.$_REQUEST['PatientID'].'"';
             $QueryResult = mysqli_query($DBConnection, $Query);
+            
+            $pass=MD5($_REQUEST['Password']);
         
-            $Query = 'UPDATE user SET Password="'.$_REQUEST['Password'].'" WHERE UserID="'.$_REQUEST['UserID'].'"';
+            $Query = 'UPDATE user SET Password="'.$pass.'" WHERE UserID="'.$_REQUEST['UserID'].'"';
             $QueryResult = mysqli_query($DBConnection, $Query);
         
             
@@ -291,7 +295,7 @@ switch ($_REQUEST["Operation"]) {
             }
             else{
                 $counter=0;
-                $DoctorQuery = 'SELECT * FROM doctor';
+                $DoctorQuery = 'SELECT * FROM doctor ORDER BY DoctorID';
                 $DoctorQueryResult = mysqli_query($DBConnection, $DoctorQuery);
 
 
@@ -382,9 +386,9 @@ switch ($_REQUEST["Operation"]) {
                 }
             }
             
-        
+            $pass=MD5($_REQUEST['Password']);
             
-            $Query = 'INSERT INTO user (Username,Password,UserType) VALUES ("'.$_REQUEST['Username'].'","'.$_REQUEST['Password'].'","Doctor")';
+            $Query = 'INSERT INTO user (Username,Password,UserType) VALUES ("'.$_REQUEST['Username'].'","'.$pass.'","Doctor")';
             $QueryResult = mysqli_query($DBConnection, $Query);
             if($QueryResult==True)
             {
@@ -456,7 +460,9 @@ switch ($_REQUEST["Operation"]) {
             $Query = 'UPDATE doctor SET Name="'.$_REQUEST['Name'].'",Surname="'.$_REQUEST['Surname'].'",BirthDate="'.$_REQUEST['BirthDate'].'",Specialization="'.$_REQUEST['Specialization'].'" WHERE DoctorID="'.$_REQUEST['DoctorID'].'"';
             $QueryResult = mysqli_query($DBConnection, $Query);
         
-            $Query = 'UPDATE user SET Password="'.$_REQUEST['Password'].'" WHERE UserID="'.$_REQUEST['UserID'].'"';
+             $pass=MD5($_REQUEST['Password']);
+        
+            $Query = 'UPDATE user SET Password="'.$pass.'" WHERE UserID="'.$_REQUEST['UserID'].'"';
             $QueryResult = mysqli_query($DBConnection, $Query);
         
         
